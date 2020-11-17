@@ -1,0 +1,100 @@
+ 
+<div class="card mt-3">
+  <div class="card-header">
+    <div class="float-left">
+      <h4>Pacientes</h4>
+    </div>
+    <div class="float-right">
+      <button class="btn btn-primary mb-1 btn-sm" (click)="openModal(content, '')">
+        Novo
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover" >
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      	<tr *ngFor="let patient of patients">
+          <td>{{patient.id}}</td>
+          <td>{{patient.name}}</td>
+          <td></td>
+          <td>
+            <span class="float-right">
+              <button class="btn btn-outline-warning mb-1 btn-sm" (click)="openModal(content, patient)">
+                Editar
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ngb-pagination class="d-flex justify-content-center" (pageChange)="loadPage($event)" [collectionSize]="total" [(page)]="page" [maxSize]="10" [rotate]="true" [ellipses]="true" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <form [formGroup]="contentForm" (ngSubmit)="onSubmit()" >
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Dados Paciente</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">      
+      <input type="hidden" id="id" class="form-control" formControlName="id" name="id" >
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <div class="input-group">
+            <input id="name" class="form-control" formControlName="name" name="name" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <input id="email" class="form-control" formControlName="email" name="email" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="gender">Sexo</label>
+          <div class="input-group">
+            <input id="gender" class="form-control" formControlName="gender" name="gender" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="telephone">Telefone</label>
+          <div class="input-group">
+            <input id="telephone" class="form-control"  formControlName="telephone"  name="telephone" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="birthDate">Data de aniversario </label>
+          <div class="input-group">
+            <input id="birthDate" [leadZeroDateTime]="false" mask="d0/M0/0000" [dropSpecialCharacters]="false" [showMaskTyped]="true" class="form-control"  required [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors }" formControlName="birthDate" name="birthDate" >
+          </div>
+          <div *ngIf="submitted && f.birthDate.errors" class="invalid-birthDate">
+            <div *ngIf="f.birthDate.errors.required">Campo Obrigatória</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lastAttendance">Ultimo atendimento</label>
+          <div class="input-group">
+            <input id="lastAttendance" [leadZeroDateTime]="false" mask="d0/M0/0000" [dropSpecialCharacters]="false" [showMaskTyped]="true" class="form-control" formControlName="lastAttendance" name="lastAttendance" >
+          </div>
+        </div>
+      
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Fechar</button>
+      <button type="submit" class="btn btn-outline-dark" ng-disabled="contentForm.$invalid" >Salvar</button>
+    </div>
+  </form>
+</ng-template>
+ 

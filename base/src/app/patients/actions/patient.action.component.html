@@ -1,0 +1,47 @@
+<ng-template #patient.action.component let-modal>
+  <form [formGroup]="contentForm" (ngSubmit)="onSubmit()" >
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">      
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <div class="input-group">
+            <input id="name" class="form-control" formControlName="name" name="name" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="gender">Sexo</label>
+          <div class="input-group">
+            <input id="gender" class="form-control" formControlName="gender" name="gender" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="telephone">Telefone</label>
+          <div class="input-group">
+            <input id="telephone" class="form-control" formControlName="telephone" name="telephone" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="birthDate">Data de aniversario</label>
+          <div class="input-group">
+            <input id="birthDate" class="form-control" formControlName="birthDate" name="birthDate" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lastAttendance">Ultimo atendimento</label>
+          <div class="input-group">
+            <input id="lastAttendance" class="form-control" formControlName="lastAttendance" name="lastAttendance" >
+          </div>
+        </div>
+      
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+      <button type="submit" class="btn btn-outline-dark" >Save</button>
+    </div>
+  </form>
+</ng-template>
