@@ -23,7 +23,7 @@ Após instalar todas as depencias pelo composer, vc deve configurar o arquivo .e
 ```
 Vamos importar nosso banco dados 
 ```
-acesse seu banco de dados e importe o arquivo test.sql que esta na raiz do projeto TestDevFUll.
+acesse seu banco de dados e importe o arquivo "test.sql" que esta na raiz do projeto TestDevFUll.
 ```
 
 Vamos gerar uma nova chave para laravel rodando o comando 
